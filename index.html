@@ -1,14 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>Var-Well</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Bootstrap Dropdown Hover CSS -->
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/bootstrap-dropdownhover.min.css" rel="stylesheet">
+
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
     <style>
-      .main-image {
+      /* start header css */
+
+      .hover-layout {
+        margin:0px;
+      }
+
+      .btn-layout {
+        border:none;
+        padding:8px;
+      }
+
+      .dropdown-menu-css {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+        display: none;
+        float: left;
+        min-width: 10rem;
+        padding: .5rem 0;
+        margin: .125rem 0 0;
+        font-size: 1rem;
+        color: #212529;
+        text-align: left;
+        list-style: none;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0,0,0,.15);
+        border-radius: .25rem;
+      }
+
+      .dropdown:hover>.dropdown-menu-css {
+        display: block;
+      }
+
+      #dropmenu-2 {
+        animation-duration: 1s;
+      }
+
+
+      /* end header css */
+
+      /* start content css */
+
+      .content-image {
         width: 100%;
         height: 600px;
         background-repeat:no-repeat;
@@ -18,8 +68,14 @@
         background-image: url("images/Greece.jpg");
       }
 
+      .main-title {
+        font-size:60px;
+        color:white;
+      }
+
       .align-center {
         text-align: center;
+        padding:100px;
       }
 
       .center-btn {
@@ -27,18 +83,73 @@
         margin: 10px;
       }
 
-      .main-title {
-        font-size:60px;
-        color:white;
-        margin-top:50px;
-      }
+      /* end content css */
+
+      /* start footer css */
+
+
+
+      /* end footer css */
+
+
     </style>
     <script>
+      /* start header js */
+
+      function testAnim(x) {
+        $("#animationSandbox").removeClass().addClass(x + " animated").one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function(){
+          $(this).removeClass();
+        });
+      };
+
+      $(document).ready(function(){
+        $(".js--triggerAnimation").click(function(e){
+          e.preventDefault();
+          var anim = $(".js--animations").val();
+          testAnim(anim);
+        });
+
+        $(".js--animations").change(function(){
+          var anim = $(this).val();
+          testAnim(anim);
+        });
+
+        $("#dropdown-item-2").hover(
+          ()=>{
+            $("#dropmenu-2").removeClass('animated')
+            $("#dropmenu-2").removeClass('fadeOutDown')
+            $("#dropmenu-2").addClass('fadeInUp')
+            $("#dropmenu-2").addClass('animated')
+          }, ()=>{
+            $("#dropmenu-2").removeClass('animated')
+            $("#dropmenu-2").removeClass('fadeInUp')
+            $("#dropmenu-2").addClass('fadeOutDown')
+            $("#dropmenu-2").addClass('animated')
+          }
+        )
+
+      });
+
+      /* end header js */
+
+      /* start content js */
+
+
+
+      /* end content js */
+
+      /* start footer js */
+
+
+
+      /* end footer js */
+
 
     </script>
   </head>
   <body>
-    <div class="main-image">
+    <!-- start header -->
+    <div class="fixed-top">
       <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand text-white" href="#">
           <img src="images/logo.jpeg" width="50">
@@ -46,30 +157,40 @@
         </a>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
+
             <li class="nav-item">
-              <a class="nav-link text-light" href="#">Products <span class="sr-only">(current)</span></a>
+              <a class="nav-link text-light" href="#">Products</a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link text-light" href="#">Payments</a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link text-light" href="#">Pricing</a>
             </li>
+
             <li class="nav-item">
-              <div class="dropdown">
-                <button class="btn dropdown-toggle text-light" style="padding:0px; border:none; margin-top:8px; margin-left:5px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown button
+              <div class="dropdown" id="dropdown-item-2">
+                <button class="btn dropdown-toggle text-light btn-layout" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                <div id="dropmenu-2" class="dropdown-menu-css hover hoveer-layout" aria-labelledby="dropdownMenu2">
+                  <button class="dropdown-item" type="button">Action</button>
+                  <button class="dropdown-item" type="button">Another action</button>
+                  <button class="dropdown-item" type="button">Something else here</button>
                 </div>
               </div>
             </li>
+
           </ul>
         </div>
       </nav>
+    </div>
+    <!-- end header -->
+
+    <!-- start content -->
+    <div class="content-image">
       <div class="align-center">
         <h1 class="main-title">Var-Well</h1>
         <div class="">
@@ -80,13 +201,15 @@
         </div>
       </div>
     </div>
-    <div style="background:lightgray; width:100%; height:500px;">
-    </div>
-  </body>
+    <!-- end content -->
 
-  <footer>
-    @ Company var-well
-  </footer>
-  <script src="test.js">
-  </script>
+    <!-- start footer -->
+    <div class="footer">
+      <footer>
+        @ company var-well
+      </footer>
+    </div>
+    <!-- end footer -->
+
+  </body>
 </html>
